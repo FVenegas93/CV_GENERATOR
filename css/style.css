@@ -1,0 +1,148 @@
+/*GENERAL RULES*/
+body {
+    padding-bottom: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/*CSS RULES FOR NAVIGATION BAR*/
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-orange {
+    background-color: darkorange !important;
+}
+.navbar-orange ul li a {
+    border-radius: 5px;
+}
+.navbar-orange ul li a:hover {
+    background-color: orangered;
+    color: white;
+}
+
+/*CSS RULES FOR LOGIN FORM*/
+.login-form {
+    width: 300px !important;
+    height: 431px !important;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    justify-content: center;
+    background-color: rgb(245, 239, 239);
+}
+.title-form {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-form {
+    display: block;
+    width: 250px;
+    height: 58px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    border-radius: 5px;
+}
+
+.input-user {
+    position: relative;
+    width: 250px;
+    height: 58px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.input-pass {
+    position: relative;
+    width: 250px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-form {
+    margin: 10px;
+    border-radius: 5px !important;
+    border-color: orangered;
+    border-width: 2px;
+    background-color: orangered;
+}
+
+.btn-form:hover {
+    background-color: darkorange;
+    border-color: orangered;
+    border-width: 2px;
+}
+
+.button-anchor {
+    text-decoration: none;
+    color: white;
+}
+
+.button-anchor:hover{
+    text-decoration: none;
+    color: white;
+}
+
+/*CSS RULES FOR CREATE USER FORM*/
+.create-user-form {
+    width: 350px !important;
+    height: 1030px !important;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    justify-content: center;
+    background-color: rgb(245, 239, 239);
+}
+
+/*CSS RULES FOR FORM MISTAKES*/
+.error {
+    color:crimson;
+    font-weight: bold;
+}
+
+/*CSS RULES FOR TABLES*/ 
+.table-responsive-sm {
+    padding: 5px !important;
+}
+
+th {
+    background-color: rgb(255, 223, 184) !important;
+}
+
+/*CSS RULES FOR FOOTER*/
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: -20px;
+    margin-top: 200px !important;
+    margin-bottom: 0px !important;
+    background-color: darkorange;
+}
+
+footer ul {
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 0.597);
+}
+
+/*MEDIA QUERY FOR NAVIGATION BAR*/
+@media screen and (max-width: 576px) {
+    .navbar-orange ul li a {
+        padding: 8px;
+    }
+
+    .navbar-toggler:hover {
+        background-color: white;
+    }
+
+    .navbar-collapse {
+        padding-top: 10px;
+    }
+    
+}
