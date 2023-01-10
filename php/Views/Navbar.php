@@ -1,14 +1,6 @@
 <?php
   session_start();
   include("../Models/DatabaseConnection.php");
-
-  function activeLink($link, $class) {
-    $uri = $_SERVER['REQUEST_URI'];
-    $class = '';
-    if($link == $uri) {
-      $class='active';
-    }
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title> 
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/style.css">  
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+      .active_link {
+        background-color: white;
+        color: orange;
+      }
+    </style>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('a').click(function(event) {
+          $("#l1").addClass('active_link');
+        });
+      });
+    </script>
+    
 </head>
 <body>
   <nav class="navbar navbar-expand-sm navbar-orange text-bg-dark">
@@ -28,28 +35,29 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand active" href="#">CV Generator</a>
+        <a class="navbar-brand" href="#">CV Generator</a>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active" id="link1">
-            <a class="nav-link active" aria-current="page" href="../Views/main.php">Home</a>
+          <li class="nav-item" id="link1">
+            <a class="nav-link" id="l1" href="../Views/main.php">Home</a>
           </li>
           
-          <?php if(isset($_SESSION["user"]) && $_SESSION["role"] == "admin") {
-            echo "<li class='nav-item' id='link2'>
-            <adfsdfsd href='../Views/UsersList.php'>Usuarios</a>
-            </li>";
-          }?>
+          <?php if(isset($_SESSION["user"]) && $_SESSION["role"] == "admin") { ?>
+            <li class='nav-item' id='link2'>
+              <a class='nav-link' href='../Views/UsersList.php'>Usuarios</a>
+            </li>
+          <?php }?>
 
-          <?php if(!isset($_SESSION["user"])) {
-            echo "<li class='nav-item' id='link3'>
-            <a class='nav-link' href='../Views/Login.php'>Login</a>
-            </li>";
-          }else {
-            echo "<li class='nav-item' id='link4'>
-            <a class='nav-link' href='../Views/Logout.php'>Logout</a>
-            </li>";
-          }?>
+          <?php if(!isset($_SESSION["user"])) { ?>
+            <li class='nav-item' id='link3'>
+              <a class='nav-link' href='../Views/Login.php'>Login</a>
+            </li>
+
+          <?php }else { ?>
+            <li class='nav-item' id='link4'>
+              <a class='nav-link' href='../Views/Logout.php'>Logout</a>
+            </li>
+          <?php }?>
         </ul>
       </div>
     </div>
@@ -90,7 +98,7 @@
       </li>
     </ul>
   </footer>
-
+  
 <script src="../../js/bootstrap.bundle.min.js"></script>
 
 </body>
