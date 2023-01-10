@@ -46,11 +46,10 @@ ob_end_flush();
 <body class="text-center">
     <main class="form-signin w-100 m-auto login-form" >
         <form action="Login.php" method="POST">  
+            <h2 class="title-form">Inicio de Sesión</h2>
         <?php   
             if($wrong_login == true) {
-                echo "<p class='error'>Credenciales erróneas</p>";
-            }else {
-                echo "<h2 class='title-form'>Inicio de Sesión</h2>";
+                echo "<h6 class='error'>Credenciales erróneas</h6>";
             }
         ?>
 

@@ -60,12 +60,12 @@ ob_end_flush();
             <h2 class="title-form">Registro de Usuario</h2>
 
             <div id="sign_in_mistakes">
-            <?php
-                //PRINTS A WARNING THAT WARNS THE NEW USER ALREADY EXISTS 
-                if($user_already_exists == true) { 
-                    echo "<p class='error'>El usuario ya existe</p>";
-                }   
-            ?>
+                <?php
+                    //PRINTS A WARNING THAT WARNS THE NEW USER ALREADY EXISTS 
+                    if($user_already_exists == true) { 
+                        echo "<p class='error'>El usuario ya existe</p>";
+                    }   
+                ?>
             </div>
 
 

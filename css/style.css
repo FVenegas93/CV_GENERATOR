@@ -8,17 +8,29 @@ body {
 /*CSS RULES FOR NAVIGATION BAR*/
 .navbar {
     margin-bottom: 20px;
+    padding: 10px;
 }
 
-.navbar-orange {
-    background-color: darkorange !important;
+.navbar-contrast {
+    background-color: darkslategrey !important;
 }
-.navbar-orange ul li a {
+
+.navbar-brand {
+    color: lightblue;
+}
+
+.navbar-brand:hover {
+    color: lightblue;
+}
+
+.navbar-contrast ul li a {
     border-radius: 5px;
+    color: lightblue;
 }
-.navbar-orange ul li a:hover {
-    background-color: orangered;
-    color: white;
+.navbar-contrast ul li a:hover {
+    background-color: greenyellow;
+    color: black;
+    
 }
 
 
@@ -71,14 +83,15 @@ body {
 .btn-form {
     margin: 10px;
     border-radius: 5px !important;
-    border-color: orangered;
+    border-color: darkslategrey;
     border-width: 2px;
-    background-color: orangered;
+    background-color: darkslategrey;
 }
 
 .btn-form:hover {
-    background-color: darkorange;
-    border-color: orangered;
+    background-color: greenyellow;
+    border-color: greenyellow;
+    color: black;
     border-width: 2px;
 }
 
@@ -89,7 +102,7 @@ body {
 
 .button-anchor:hover{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 /*CSS RULES FOR CREATE USER FORM*/
@@ -106,7 +119,7 @@ body {
 /*CSS RULES FOR FORM MISTAKES*/
 .error {
     color:crimson;
-    font-weight: bold;
+    
 }
 
 /*CSS RULES FOR TABLES*/ 
@@ -114,37 +127,65 @@ body {
     padding: 5px !important;
 }
 
-th {
-    background-color: rgb(255, 223, 184) !important;
+td {
+    background-color: rgb(245, 239, 239) !important;
+    text-align: center;
+    color: black;
 }
+
+tr:hover {
+    background-color: greenyellow !important;
+}
+
+th {
+    background-color: darkslategrey !important;
+    color: lightblue;
+    text-align: center;
+}
+
+
 
 /*CSS RULES FOR FOOTER*/
 footer {
+    z-index: 2;
     width: 100%;
     position: fixed;
-    bottom: -20px;
+    bottom: -23px;
     margin-top: 200px !important;
     margin-bottom: 0px !important;
-    background-color: darkorange;
+    background-color: darkslategrey;
+}
+
+.mb-3 {
+    color: lightblue !important;
 }
 
 footer ul {
     margin-right: 10px;
-    color: rgba(0, 0, 0, 0.597);
+}
+
+footer ul li a svg:hover {
+    color: greenyellow !important;
 }
 
 /*MEDIA QUERY FOR NAVIGATION BAR*/
 @media screen and (max-width: 576px) {
-    .navbar-orange ul li a {
+    .navbar-contrast ul li a {
         padding: 8px;
     }
 
+    .navbar-toggler {
+        background-color: lightblue;
+        color: black;
+    }
+
     .navbar-toggler:hover {
-        background-color: white;
+        background-color: greenyellow;
     }
 
     .navbar-collapse {
         padding-top: 10px;
     }
+
     
 }

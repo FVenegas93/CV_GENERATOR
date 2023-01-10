@@ -19,7 +19,7 @@
 <body>
 
 <div class="table-responsive-sm">
-    <table class="table table-hover caption-top table-lg">
+    <table class="table caption-top table-lg table-hover">
         <caption>Listado de usuarios</caption>
         <tr>
             <th>Usuario</th>
