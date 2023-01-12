@@ -116,6 +116,14 @@ body {
     background-color: rgb(245, 239, 239);
 }
 
+.valid-form {
+    background-color: lightgreen !important;
+}
+
+.invalid-form {
+    background-color: lightcoral;
+}
+
 /*CSS RULES FOR FORM MISTAKES*/
 .error {
     color:crimson;
