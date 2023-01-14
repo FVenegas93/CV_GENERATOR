@@ -20,12 +20,12 @@ ob_start();
         $email = $_POST["email"];
         $name = $_POST["first_name"];
         $first_surname = $_POST["first_surname"];
-        $second_surname = $_POST["second_surname"];
+        //$second_surname = $_POST["second_surname"];
         $nif = $_POST["nif"];
-        $address = $_POST["address"];
+       /* $address = $_POST["address"];
         $country = $_POST["country"];
         $region = $_POST["region"];
-        $city = $_POST["city"];
+        $city = $_POST["city"];*/
         $phone = $_POST["phone"]; 
         $admin = 0;
         $code = generateCode();
@@ -59,89 +59,99 @@ ob_end_flush();
     <main class="form-signin w-100 m-auto create-user-form" >
         <form action="CreateUser.php" class="form" id="form" method="POST">
             <h2 class="title-form">Registro de Usuario</h2>
-
-            <div id="sign_in_mistakes">
-                <?php
-                    //PRINTS A WARNING THAT WARNS THE NEW USER ALREADY EXISTS 
-                    if($user_already_exists == true) { 
-                        echo "<p class='error'>El usuario ya existe</p>";
-                    }   
-                ?>
-            </div>
-
-
+            
             <!--FORMS FILLABLES BY THE USER WHO IS SIGNING IN-->
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput1" name="username" placeholder="Nombre de usuario"/>
                 <label id="label1" for="floatingInput">Nombre de usuario</label>
+            </div>
+            <div class="wrong">
+                <p id="wrong1"><?php if($user_already_exists) echo "Nombre de usuario no disponible";?></p>
             </div>
 
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingInput2" name="passwd" placeholder="Contraseña"/>
                 <label id="label2" for="floatingInput">Contraseña</label>
             </div>
+            <div class="wrong">
+                <p id="wrong2"></p>
+            </div>
 
-            <div class="form-floating">
+           <div class="form-floating">
                 <input type="password" class="form-control" id="floatingInput3" name="repeat_passwd" placeholder="Repetir contraseña"/>
                 <label id="label3" for="floatingInput">Repetir contraseña</label>
+            </div>
+            <div class="wrong">
+                <p id="wrong3"></p>
             </div>
 
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput4" name="email" placeholder="Correo electrónico"/>
                 <label id="label4" for="floatingInput">Email (Ej: srDebian@gmail.com)</label>
             </div>
+            <div class="wrong">
+                <p id="wrong4"></p>
+            </div>
 
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput5" name="first_name" placeholder="Tu nombre"/>
                 <label id="label5" for="floatingInput">Tu nombre</label>
+            </div>
+            <div class="wrong">
+                <p id="wrong5"></p>
             </div>
             
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput6" name="first_surname" placeholder="Primer apellido"/>
                 <label id="label6" for="floatingInput">Primer apellido</label>
             </div>
-
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput7" name="second_surname" placeholder="Segundo apellido"/>
-                <label id="label7" for="floatingInput">Segundo apellido</label>
+            <div class="wrong">
+                <p id="wrong6"></p>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="nif" placeholder="NIF"/>
-                <label id="label8" for="floatingInput">NIF (Ej: 12345678T)</label>
+                <input type="text" class="form-control" id="floatingInput7" name="nif" placeholder="NIF"/>
+                <label id="label7" for="floatingInput">NIF (Ej: 12345678T)</label>
+            </div>
+            <div class="wrong">
+                <p id="wrong7"></p>
             </div>
 
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="address" placeholder="Dirección"/>
+            <!--<div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput9" name="address" placeholder="Dirección"/>
                 <label id="label9" for="floatingInput">Dirección (Ej: C/Cid,43)</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="country" placeholder="País"/>
+                <input type="text" class="form-control" id="floatingInput10" name="country" placeholder="País"/>
                 <label id="label10" for="floatingInput">País</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="region" placeholder="Provincia"/>
+                <input type="text" class="form-control" id="floatingInput11" name="region" placeholder="Provincia"/>
                 <label id="label11" for="floatingInput">Provincia</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="city" placeholder="Ciudad"/>
+                <input type="text" class="form-control" id="floatingInput12" name="city" placeholder="Ciudad"/>
                 <label id="label12" for="floatingInput">Ciudad</label>
-            </div>
+            </div>-->
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="phone" placeholder="Teléfono"/>
-                <label id="label13" for="floatingInput">Teléfono (Ej: 659659659)</label>
+                <input type="text" class="form-control" id="floatingInput8" name="phone" placeholder="Teléfono"/>
+                <label id="label8" for="floatingInput">Teléfono (Ej: 659659659)</label>
+            </div>
+            <div class="wrong">
+                <p id="wrong8"></p>
             </div>
 
-            <br><input type="checkbox" id="floatingInput" name="privacy_policy"/>
-            <label id="label14" for="floatingInput">Acepto las condiciones de privacidad</label>
+            <br><input type="checkbox" id="floatingInput9" name="privacy_policy"/>
+            <label id="label9" for="floatingInput">Acepto las condiciones de privacidad</label>
             
             <div class="btn-group">
-                <input class="w-100 btn btn-lg btn-primary btn-form" id="submit" type="submit" value="Enviar"/>
+                <input class="w-100 btn btn-lg btn-primary btn-form" id="submit" type="submit" value="Enviar" />
             </div>
+            
         </form>
     <main>
     <script src="../../js/scriptRegex.js"></script>

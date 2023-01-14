@@ -116,12 +116,23 @@ body {
     background-color: rgb(245, 239, 239);
 }
 
-.valid-form {
-    background-color: lightgreen !important;
+.valid-input {
+    background-color: lightgreen;
 }
 
-.invalid-form {
+.invalid-input {
     background-color: lightcoral;
+}
+
+.disabled-submit {
+    background-color: gray;
+}
+
+.wrong {
+    background-color: crimson !important;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
 }
 
 /*CSS RULES FOR FORM MISTAKES*/
