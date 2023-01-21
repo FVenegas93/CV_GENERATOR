@@ -4,6 +4,7 @@ var btn = document.getElementById('submit');
 //FORM
 var form = document.getElementById('form');
 
+const url = "http://localhost/CV_GENERATOR/php/Controllers/CreateUser.php";
 //INPUTS
 var username = document.getElementById('floatingInput1');
 var passwd = document.getElementById('floatingInput2');
@@ -89,6 +90,8 @@ const validateForm = (e) => {
                     document.getElementById('wrong1').innerHTML = "No se permiten caracteres especiales";
                 }
             }
+
+            console.log("username" + bools.username);
             
         break;
         case "passwd":
@@ -105,6 +108,8 @@ const validateForm = (e) => {
                     document.getElementById('wrong2').innerHTML = "No se permiten caracteres especiales";
                 }
             }
+
+            console.log("passwd" + bools.passwd);
         break;
         case "repeat_passwd":
             validatePassword2(btn);
@@ -209,6 +214,7 @@ const validatePassword2 = () => {
     }
 }
 
+
 /*
 this arrow function validates whether the privacy policy checkbox is checked or not. If the checkbox
 is checked its respective bool will be true and will return also a true boolean, else, both the bool and 
@@ -231,6 +237,23 @@ inputs.forEach((input) => {
     input.addEventListener('blur', validateForm);
 });
 
+
+
+username.addEventListener('blur', function(){
+    var user = $(this).val();
+    var dataString = 'username='+user;
+
+    $.ajax({
+        type:'POST',
+        url:'../Controllers/UsernameAvailability.php',
+        data: dataString,
+        success:function(data){
+            $('#username_exists').fadeIn(1000).html(data);
+        }
+    });
+});
+
+
 /*
 An event which listens if the privacy policy checkbox is checked or not.
 */
@@ -240,23 +263,43 @@ privacy.addEventListener("click", validateCheckbox);
 An event for the form which prevents the event whenever one of the bools is false. On the other hand, if all the bools are true,
 an AJAX Request is done and the form is sent to the server, and then, to the database.
 */
-form.addEventListener('submit', (e) => {
+window.addEventListener("load", function(e) {
+    form.action = url;
+    ajax_resp = document.getElementsByClassName('ajax-resp');
     
-    //stocks all the data sent in the AJAX Request that will be send later to the Server POST Array
-    var dt = "user="+username.value+"&pass="+passwd.value+"&pass2="+passwd2.value+"&email="+email.value+"&name="+firstname.value+"&sur1="+surname1.value+"&nif="+nif.value+"&phone="+phone.value;
-    
-    if(bools.username && bools.passwd && bools.passwd2 && bools.email 
-        && bools.firstname && bools.surname1 && bools.nif && bools.phone && bools.policy) {
-            $.ajax({
-                url: 'http://localhost/CV_GENERATOR/php/Controllers/CreateUser.php',
-                type: 'POST',
-                data: dt
-            });
-        }else {
-            e.preventDefault();
-        }
-     
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(bools.username && bools.passwd && bools.passwd2 && bools.email 
+            && bools.firstname && bools.surname1 && bools.nif && bools.phone && bools.policy) {
+                use_XHR(form, ajax_resp);
+            }
+                
+            
+         
+    });
 });
 
 
+function use_XHR(fo, response) {
+    let xhr = new XMLHttpRequest();
 
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState == 4 && this.status == 200) {
+            response.innerHTML = this.responseText;
+            window.location.href = "http://localhost/CV_GENERATOR/php/Views/Redirect.php";
+        }else {
+            response.innerHTML = 
+            `
+            <p>AJAX request state: ${this.readyState}</p>
+            <p>Server request state: ${this.statusText} - ${this.status}</p>
+            `
+        }
+    });
+
+    xhr.open(fo.method, fo.action, true);
+
+    let formData = new FormData(fo);
+    console.log(formData);
+    xhr.send(formData);
+
+}

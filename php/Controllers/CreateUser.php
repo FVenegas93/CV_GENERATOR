@@ -66,8 +66,9 @@ ob_end_flush();
                 <label id="label1" for="floatingInput">Nombre de usuario</label>
             </div>
             <div class="wrong">
-                <p id="wrong1"><?php if($user_already_exists) echo "Nombre de usuario no disponible";?></p>
+                <p id="wrong1"></p>
             </div>
+            <div class="wrong" id="username_exists"></div>
 
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingInput2" name="passwd" placeholder="Contraseña"/>
@@ -149,7 +150,11 @@ ob_end_flush();
             <label id="label9" for="floatingInput">Acepto las condiciones de privacidad</label>
             
             <div class="btn-group">
-                <input class="w-100 btn btn-lg btn-primary btn-form" id="submit" type="submit" value="Enviar" />
+                <input class="w-100 btn btn-lg btn-primary btn-form" id="submit" name="submit" type="submit" value="Enviar" />
+            </div>
+
+            <div class="ajax-resp">
+                
             </div>
             
         </form>

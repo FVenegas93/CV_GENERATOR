@@ -1,0 +1,23 @@
+html {
+    background-color: #212529;
+}
+
+div {
+    background-color: #212529;
+    margin-top: 15px;
+}
+
+figure {
+    margin-top: 20px;
+}
+
+figcaption {
+    text-align: center;
+    font-size: larger;
+    color: white;
+}
+
+h3 {
+    text-align: center;
+    color:white;
+}
