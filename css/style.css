@@ -12,23 +12,24 @@ body {
 }
 
 .navbar-contrast {
-    background-color: darkslategrey !important;
+    background-color: #383f47 !important;
 }
 
 .navbar-brand {
-    color: lightblue;
+    color: white;
+    font-weight: bolder;
 }
 
 .navbar-brand:hover {
-    color: lightblue;
+    color: white;
 }
 
 .navbar-contrast ul li a {
     border-radius: 5px;
-    color: lightblue;
+    color: rgb(154, 204, 220);
 }
 .navbar-contrast ul li a:hover {
-    background-color: greenyellow;
+    background-color: rgb(154, 204, 220);
     color: black;
     
 }
@@ -83,14 +84,14 @@ body {
 .btn-form {
     margin: 10px;
     border-radius: 5px !important;
-    border-color: darkslategrey;
+    border-color: #383f47;
     border-width: 2px;
-    background-color: darkslategrey;
+    background-color: #383f47;
 }
 
 .btn-form:hover {
-    background-color: greenyellow;
-    border-color: greenyellow;
+    background-color: rgb(154, 204, 220);
+    border-color: rgb(154, 204, 220);
     color: black;
     border-width: 2px;
 }
@@ -102,7 +103,7 @@ body {
 
 .button-anchor:hover{
     text-decoration: none;
-    color: black;
+    color: #383f47;
 }
 
 /*CSS RULES FOR CREATE USER FORM*/
@@ -129,7 +130,7 @@ body {
 }
 
 .not-wrong {
-    background-color: greenyellow !important;
+    background-color: rgb(154, 204, 220) !important;
     border-radius: 5px;
     color: white;
     font-weight: bold;
@@ -156,15 +157,15 @@ body {
 td {
     background-color: rgb(245, 239, 239) !important;
     text-align: center;
-    color: black;
+    color: #39434b;
 }
 
 tr:hover {
-    background-color: greenyellow !important;
+    background-color: rgb(154, 204, 220) !important;
 }
 
 th {
-    background-color: darkslategrey !important;
+    background-color: #39434b !important;
     color: lightblue;
     text-align: center;
 }
@@ -179,11 +180,11 @@ footer {
     bottom: -23px;
     margin-top: 200px !important;
     margin-bottom: 0px !important;
-    background-color: darkslategrey;
+    background-color: #383f47;
 }
 
 .mb-3 {
-    color: lightblue !important;
+    color: rgb(154, 204, 220) !important;
 }
 
 footer ul {
@@ -191,8 +192,9 @@ footer ul {
 }
 
 footer ul li a svg:hover {
-    color: greenyellow !important;
+    color: rgb(154, 204, 220) !important;
 }
+
 
 /*MEDIA QUERY FOR NAVIGATION BAR*/
 @media screen and (max-width: 576px) {
@@ -201,12 +203,12 @@ footer ul li a svg:hover {
     }
 
     .navbar-toggler {
-        background-color: lightblue;
-        color: black;
+        background-color: rgb(154, 204, 220);
+        color: #2e353b;
     }
 
     .navbar-toggler:hover {
-        background-color: greenyellow;
+        background-color: rgb(154, 204, 220);
     }
 
     .navbar-collapse {

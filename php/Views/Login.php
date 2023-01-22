@@ -23,7 +23,7 @@
                 }else {
                     $_SESSION["role"] = "account";
                 }
-                header('Location: ../Views/main.php');
+                header('Location: ../Views/');
             }else {
                 $wrong_login = true;
             }

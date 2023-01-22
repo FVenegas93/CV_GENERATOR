@@ -11,25 +11,7 @@
     <title></title> 
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <style>
-      
-      .active-link {
-        background-color: white !important;
-        color: orange !important;
-        border-radius: 5px;
-        
-      }
-
-    </style>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" crossorigin="anonymous"></script>
-    <script>
-      $(document).ready(function(){
-        $("a").click(function() {
-          $(this).addClass("active-link");
-        });
-      });
-      
-    </script>
     
 </head>
 <body>
@@ -40,11 +22,11 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">CV Generator</a>
+        <a class="navbar-brand"><img src="../../img/cv.jpg"></a>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" id="link1">
-            <a class="nav-link" href="../Views/main.php">Home</a>
+            <a class="nav-link" href="../Views/index.php">Home</a>
           </li>
           
           <?php if(isset($_SESSION["user"]) && $_SESSION["role"] == "admin") { ?>

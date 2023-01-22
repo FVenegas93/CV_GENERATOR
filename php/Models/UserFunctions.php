@@ -91,4 +91,19 @@ function findAllUsers() {
 
     return $res;
 }
+
+function findDirectionByUsername($user) {
+    $query = "SELECT address FROM users WHERE username = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($user));
+        $res = $result->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    return $res;
+}
 ?>
