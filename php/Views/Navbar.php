@@ -22,7 +22,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand"><img src="../../img/cv.jpg"></a>
+        <a class="navbar-brand"><img src="../../img/logo.jpg"></a>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" id="link1">

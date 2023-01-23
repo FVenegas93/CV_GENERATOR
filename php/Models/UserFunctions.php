@@ -12,13 +12,13 @@ function findUserByUser($user) {
     return $res;
 }
 
-function createUser($user, $pass, $email, $f_name, $f_surname, $s_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code) {
-    $query = "INSERT into users(username, passwd, email, first_name, first_surname, second_surname, nif, address, country, region, city, phone, is_admin, activation_code)
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+function createUser($user, $pass, $email, $f_name, $f_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code) {
+    $query = "INSERT into users(username, passwd, email, first_name, first_surname, nif, address, country, region, city, phone, is_admin, activation_code)
+    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try {
         $result = $GLOBALS["bd"]->prepare($query);
-        $result->execute(array($user, $pass, $email, $f_name, $f_surname, $s_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code));
+        $result->execute(array($user, $pass, $email, $f_name, $f_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code));
     }catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
         header("Location: ../../html/ErrorPage.html");

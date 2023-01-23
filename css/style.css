@@ -143,6 +143,17 @@ body {
     font-weight: bold;
 }
 
+/*CSS RULES FOR CREATE ADDRESS FORM*/
+.create-address-form {
+    width: 350px !important;
+    height: 1030px !important;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    justify-content: center;
+    background-color: rgb(245, 239, 239);
+}
+
 /*CSS RULES FOR FORM MISTAKES*/
 .error {
     color:crimson;
@@ -153,23 +164,6 @@ body {
 .table-responsive-sm {
     padding: 5px !important;
 }
-
-td {
-    background-color: rgb(245, 239, 239) !important;
-    text-align: center;
-    color: #39434b;
-}
-
-tr:hover {
-    background-color: rgb(154, 204, 220) !important;
-}
-
-th {
-    background-color: #39434b !important;
-    color: lightblue;
-    text-align: center;
-}
-
 
 
 /*CSS RULES FOR FOOTER*/

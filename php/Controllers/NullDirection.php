@@ -6,6 +6,8 @@
         $username = $_SESSION['user'];
         $address = findDirectionByUsername($username)["address"];
 
+    }else {
+        $address = "fd";
     }
         
     

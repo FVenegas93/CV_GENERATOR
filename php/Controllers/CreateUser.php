@@ -20,12 +20,7 @@ ob_start();
         $email = $_POST["email"];
         $name = $_POST["first_name"];
         $first_surname = $_POST["first_surname"];
-        //$second_surname = $_POST["second_surname"];
         $nif = $_POST["nif"];
-       /* $address = $_POST["address"];
-        $country = $_POST["country"];
-        $region = $_POST["region"];
-        $city = $_POST["city"];*/
         $phone = $_POST["phone"]; 
         $admin = 0;
         $code = generateCode();
@@ -33,7 +28,7 @@ ob_start();
         //IF PASSWORDS MATCH A NEW USER AND IF USERNAME DOES NOT EXISTS THE NEW USER IS CREATED
         if($passwd == $repeat_passwd) {
             if(!findUserByUser($user)) {
-                createUser($user, $passwd, $email, $name, $first_surname, $second_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code);
+                createUser($user, $passwd, $email, $name, $first_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code);
                 header("Location: ../Views/Login.php");
                 
             }else {
@@ -117,27 +112,7 @@ ob_end_flush();
             <div class="wrong">
                 <p id="wrong7"></p>
             </div>
-
-            <!--<div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput9" name="address" placeholder="Dirección"/>
-                <label id="label9" for="floatingInput">Dirección (Ej: C/Cid,43)</label>
-            </div>
-
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput10" name="country" placeholder="País"/>
-                <label id="label10" for="floatingInput">País</label>
-            </div>
-
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput11" name="region" placeholder="Provincia"/>
-                <label id="label11" for="floatingInput">Provincia</label>
-            </div>
-
-            <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput12" name="city" placeholder="Ciudad"/>
-                <label id="label12" for="floatingInput">Ciudad</label>
-            </div>-->
-
+            
             <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput8" name="phone" placeholder="Teléfono"/>
                 <label id="label8" for="floatingInput">Teléfono (Ej: 659659659)</label>
