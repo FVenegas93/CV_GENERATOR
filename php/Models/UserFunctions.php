@@ -106,4 +106,17 @@ function findDirectionByUsername($user) {
 
     return $res;
 }
+
+function updateUsernameAddress($address, $country, $region, $city, $user) {
+    $query = "UPDATE users set address = ?, country = ?, region = ?, city = ? where username = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($address, $country, $region, $city, $user));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        //header("Location: ../../html/ErrorPage.html");
+    }
+}
+
 ?>

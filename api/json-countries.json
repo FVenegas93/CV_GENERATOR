@@ -1,0 +1,99 @@
+{
+    "countries": [
+        "España",
+        "Italia",
+        "Francia"
+    ],
+
+    "regions": [
+        {
+            "sp_regions": [
+                "Andalucía",
+                "Cataluña",
+                "Galicia"
+            ]
+        },
+        {
+            "fr_regions": [
+                "Isla de Francia",
+                "Borgoña",
+                "Normandía"
+            ]
+        },
+        {
+            "it_regions": [
+                "Véneto",
+                "Toscana",
+                "Apulia"
+            ]
+        }
+    ],
+
+    "cities": [
+        {
+            "andalucia_cities": [
+                "Sevilla",
+                "Granada",
+                "Córdoba"
+            ]
+        },
+        {
+            "cataluna_cities": [
+                "Barcelona",
+                "Tarragona",
+                "Gerona"
+            ]
+        },
+        {
+            "galicia_cities": [
+                "La Coruña",
+                "Vigo",
+                "Sanxenxo"
+            ]
+        },
+        {
+            "idf_cities": [
+                "Paris",
+                "Versalles",
+                "Fontainebleau"
+            ]
+        },
+        {
+            "borgona_cities": [
+                "Chablis",
+                "Auxerre",
+                "Chagny"
+            ]
+        },
+        {
+            "normandia_cities": [
+                "Ruan",
+                "Caen",
+                "Honfleur"
+            ]
+        },
+        {
+            "veneto_cities": [
+                "Venecia",
+                "Verona",
+                "Padua"
+            ]
+        },
+        {
+            "toscana_cities": [
+                "Florencia",
+                "Siena",
+                "Pisa"
+            ]
+        },
+        {
+            "apulia_cities": [
+                "Bari",
+                "Lecce",
+                "Alberobello"
+            ]
+        }
+    ]
+    
+}
+

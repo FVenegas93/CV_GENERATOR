@@ -146,7 +146,7 @@ body {
 /*CSS RULES FOR CREATE ADDRESS FORM*/
 .create-address-form {
     width: 350px !important;
-    height: 1030px !important;
+    height: 630px !important;
     padding: 15px;
     border-radius: 10px;
     display: inline-block;
