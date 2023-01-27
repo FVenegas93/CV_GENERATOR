@@ -291,9 +291,7 @@ window.addEventListener("load", function(e) {
                 
                 use_XHR(form, ajax_resp);
             }
-                
-            
-         
+
     });
 });
 
