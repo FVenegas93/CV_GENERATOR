@@ -1,7 +1,7 @@
 <?php
     include("Navbar.php");
     include("../Controllers/NullDirection.php");
-
+    include("../Controllers/CheckCVCreated.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,10 +30,16 @@
                 <p class="lead text-muted">No tienes ninguna dirección todavía, ¿te gustaría añadir una?</p>
                 
                 <p>
-                <a href="AddDirection.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
+                <a href="../Controllers/CreateAddress.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
                 </p>
             <?php }else { ?>
-            
+              <?php if(!$cv_exists) { ?>
+                <p class="lead text-muted">No tienes ningún CV todavía, ¿te gustaría crear uno?</p>
+                
+                <p>
+                <a href="CVData.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
+                </p>
+              <?php } ?>     
             <?php } ?>
 
         <?php }else { ?>

@@ -7,7 +7,7 @@
         $address = findDirectionByUsername($username)["address"];
 
     }else {
-        $address = "fd";
+        $address = "";
     }
         
     

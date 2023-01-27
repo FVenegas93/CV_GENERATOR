@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     updateUsernameAddress($address, $country, $region, $city, $user);
 
     echo ($address." ".$city." ".$region." ".$country);
-    //header("Location: ../Views/index.php");
+    header("Location: ../Views/index.php");
 
 }
 ob_end_flush();

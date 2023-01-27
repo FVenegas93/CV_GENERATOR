@@ -1,0 +1,17 @@
+main {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.spaced {
+    padding-top: 10px;
+}
+
+.lang {
+    background-image: url("../img/lang.jpg");
+}
+
+.dark {
+    background-color: black;
+    color:white;
+}

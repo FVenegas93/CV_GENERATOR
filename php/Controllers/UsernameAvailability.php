@@ -1,10 +1,17 @@
 <?php
 include("../Models/DatabaseConnection.php");
-sleep(1);
+
 
 if(!empty($_POST['username'])) {
+    $file = '../../json/bool.json';
+
+    if(file_exists($file)) {
+        unlink('../../json/bool.json');
+    }
     
     $user = (string)$_POST['username'];
+    $bool = false;
+    
 
     $query = "SELECT * FROM users WHERE username = '$user'";
 
@@ -17,15 +24,19 @@ if(!empty($_POST['username'])) {
     }
 
     if($result->rowCount() == 0) {
-
         echo "<div class='wrong' id='username_exists'></div>";
-    }else {
+        $bool = true;
         
+    }else {
         echo "<div class='wrong' id='username_exists'>Nombre de usuario no disponible</div>";
-       
+        $bool = false;
+        $json = json_encode(($bool));
     }
-    return $result;
+
+    $json = json_encode($bool);
+    file_put_contents($file, $json);
     
+    return $result;
 }
 
 ?>

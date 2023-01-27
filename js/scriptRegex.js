@@ -5,6 +5,9 @@ var btn = document.getElementById('submit');
 var form = document.getElementById('form');
 
 const url = "http://localhost/CV_GENERATOR/php/Controllers/CreateUser.php";
+
+var user_exists = document.getElementById('username_exists').innerHTML;
+
 //INPUTS
 var username = document.getElementById('floatingInput1');
 var passwd = document.getElementById('floatingInput2');
@@ -45,8 +48,10 @@ const bools = {
     surname1: false,
     nif: false,
     phone: false,
-    policy: false
+    policy: false,
+    username_available: false,
 }
+
 
 /*
 This arrow function validates an input changing its CSS class and returns a boolean 
@@ -248,10 +253,22 @@ username.addEventListener('blur', function(){
         url:'../Controllers/UsernameAvailability.php',
         data: dataString,
         success:function(data){
-            $('#username_exists').fadeIn(1000).html(data);
+            $('#username_exists').fadeIn(500).html(data); 
+            $.ajax({
+                type:'GET',
+                url: '../../json/bool.json',
+                success:function(data) {
+                    if(data == false) {
+                        bools.username_available = false;
+                    }else {
+                        bools.username_available = true;
+                    }
+                }
+            });
         }
     });
 });
+
 
 
 /*
@@ -270,7 +287,8 @@ window.addEventListener("load", function(e) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         if(bools.username && bools.passwd && bools.passwd2 && bools.email 
-            && bools.firstname && bools.surname1 && bools.nif && bools.phone && bools.policy) {
+            && bools.firstname && bools.surname1 && bools.nif && bools.phone && bools.policy && bools.username_available) {
+                
                 use_XHR(form, ajax_resp);
             }
                 
