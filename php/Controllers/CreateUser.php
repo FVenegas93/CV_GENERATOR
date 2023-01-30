@@ -125,12 +125,10 @@ ob_end_flush();
             <label id="label9" for="floatingInput">Acepto las condiciones de privacidad</label>
             
             <div class="btn-group">
-                <input <?php if($user_already_exists == true) {echo "disabled";}?>class="w-100 btn btn-lg btn-primary btn-form" id="submit" name="submit" type="submit" value="Enviar" />
+                <input class="w-100 btn btn-lg btn-primary btn-form" id="submit" name="submit" type="submit" value="Enviar" />
             </div>
 
-            <div class="ajax-resp">
-                
-            </div>
+            <div class="ajax-resp"></div>
             
         </form>
     <main>

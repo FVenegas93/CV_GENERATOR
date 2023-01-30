@@ -1,12 +1,28 @@
 var btn_lang = document.getElementById('btn-lang');
-var user = document.getElementById('user').value;
 var select_lang = document.getElementById('select-lang');
 var lvl_lang = document.getElementById('lvl-lang');
-console.log(user);
+var form_lang = document.getElementById('lang-form');
 
-btn_lang.addEventListener('click', function() {
-    var selectedOption = select_lang.options[select_lang.selectedIndex].value;
-    var selectedOption2 = lvl_lang.options[lvl_lang.selectedIndex].value;
-    console.log(selectedOption);
-    console.log(selectedOption2);
+const url = "http://localhost/CV_GENERATOR/php/Views/CVData.php?cod_cv=";
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const param = urlParams.get('cod_cv');
+const currentURL = url+param;
+
+window.addEventListener("load", function(e) {
+    form_lang.action = currentURL;
+    ajax_resp = document.getElementsByClassName('ajax-resp');
+    
+    form_lang.addEventListener('submit', (e) => {
+        $.ajax({
+            type:"POST",
+            url: currentURL,
+            data: form_lang.serialize(),
+            success: function(data) {
+                alert('Idioma creado');
+            }
+        });
+        e.preventDefault();
+    });
 });
+

@@ -20,12 +20,14 @@
 
 
 <section class="py-5 text-center container">
+  
     <div class="row py-lg-5" id="welcome-msg">
       <div class="col-lg-6 col-md-8 mx-auto">
 
         <!--PRINTS A MESSAGE WITH THE USERNAME ON IT AND ASKS FOR AN ADDRESS IF NOT SETTED-->
         <?php if(isset($_SESSION['user'])) { ?>
             <h1 class="fw-light">Bienvenido/a <?php echo $_SESSION['user'];?></h1>
+      
             <?php if($address == NULL || $address == "") { ?>
                 <p class="lead text-muted">No tienes ninguna dirección todavía, ¿te gustaría añadir una?</p>
                 
@@ -33,12 +35,13 @@
                 <a href="../Controllers/CreateAddress.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
                 </p>
             <?php }else { ?>
-              <?php if(!$cv_exists) { ?>
-                <p class="lead text-muted">No tienes ningún CV todavía, ¿te gustaría crear uno?</p>
-                
-                <p>
-                <a href="CVData.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
-                </p>
+
+                  <?php if(!$cv_exists) { ?>
+                    <p class="lead text-muted">No tienes ningún CV todavía, ¿te gustaría crear uno?</p>
+                    
+                    <p>
+                    <a href="CVsList.php" class="btn btn-primary my-2 btn-form">¡Vamos a ello!</a>
+                    </p>
               <?php } ?>     
             <?php } ?>
 

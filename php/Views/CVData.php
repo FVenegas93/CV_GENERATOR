@@ -1,12 +1,55 @@
 <?php
+ob_start();
     include("../Views/Navbar.php");
+    include("../Models/CVFunctions.php");
+    include("../Models/LanguagesFunctions.php");
+    include("../Models/CVAttributes.php");
 
-    if(isset($_SESSION['user']) && $_SESSION['role'] == 'account') {
-        $username = $_SESSION['user'];
-       
+
+    if(!isset($_SESSION['user']) || $_SESSION['role'] != 'account') {
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    if(isset($_GET["cod_cv"])) {
+        $cod_cv = $_GET["cod_cv"];
+        $user = $_SESSION["user"];
+        $disabled_submit = false;
+        
+        $spanish = findLangageByUserAndLangNameAndCV($user, "Español", $cod_cv);
+        $english = findLangageByUserAndLangNameAndCV($user, "Inglés", $cod_cv);
+        $french = findLangageByUserAndLangNameAndCV($user, "Francés", $cod_cv);
+        $german = findLangageByUserAndLangNameAndCV($user, "Alemán", $cod_cv);
+
+        if($spanish && $english && $french && $german) {
+            $disabled_submit = true;
+        }else {
+            $disabled_submit = false;
+        }
+
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            
+            $name_lang = $_POST["name_lang"];
+            $lvl_lang = $_POST["lvl_lang"];
+    
+    
+            if(!findLangageByUserAndLangName($user, $name_lang)) {
+                createLangByUser($name_lang, $lvl_lang, $user);
+                $cod_lang = findLangID($user, $name_lang)["cod_lang"];
+                createLangInCV($cod_cv, $cod_lang);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+                
+            }else {
+                $cod_lang = findLangID($user, $name_lang)["cod_lang"];
+                createLangInCV($cod_cv, $cod_lang);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }     
+        }
+
     }else {
         header("Location: ../../html/ErrorPage.html");
     }
+
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -26,23 +69,32 @@
         <div class="col-md-6">
             <div class="h-100 p-5 text-bg-dark rounded-3 lang">
             <h2>Idiomas</h2>
+
+            <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="lang-form">
+                <select id="select-lang" name="name_lang" class="form-select form-select-lg mb-3 dark" aria-label=".form-select-lg example">
+                    <option value="#" selected disabled>Seleccione un idioma</option>
+                    <?php if(!$spanish) {echo "<option value='Español'>Español</option>";}?>
+                    <?php if(!$english) {echo "<option value='Inglés'>Inglés</option>";}?>
+                    <?php if(!$french) {echo "<option value='Francés'>Francés</option>";}?>
+                    <?php if(!$german) {echo "<option value='Alemán'>Alemán</option>";}?>
+                </select>
+
+                <select id="lvl-lang" name="lvl_lang" class="form-select form-select-sm dark" aria-label=".form-select-sm example">
+                    <option selected value="Nativo">Nativo</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Medio">Medio</option>
+                    <option value="Bajo">Bajo</option>
+                </select>
+
+                <button id="btn-lang" class="btn btn-outline-light btn-form" type="submit"<?php if($disabled_submit) echo "disabled";?>>Añadir</button>
+
+                <div id="lang_already_exists">
+                    
+                </div>
+            </form>
             
-            <select id="select-lang" class="form-select form-select-lg mb-3 dark" aria-label=".form-select-lg example">
-                <option selected value="Español">Español</option>
-                <option value="Francés">Francés</option>
-                <option value="Inglés">Inglés</option>
-                <option value="Italiano">Italiano</option>
-                <option value="Alemán">Alemán</option>
-            </select>
 
-            <select id="lvl-lang" class="form-select form-select-sm dark" aria-label=".form-select-sm example">
-                <option selected value="Nativo">Nativo</option>
-                <option value="Alto">Alto</option>
-                <option value="Medio">Medio</option>
-                <option value="Bajo">Bajo</option>
-            </select>
-
-            <button id="btn-lang" class="btn btn-outline-light btn-form" type="button">Añadir</button>
+            
             </div>
         </div>
         <div class="col-md-6">
@@ -69,7 +121,7 @@
             </div>
         </div>
         </div>
-        <input id='user' type="hidden" value="<?php echo $username;?>"/>
+    
     </main>
     <script src="../../js/scriptLanguages.js"></script>
 </body>

@@ -1,5 +1,6 @@
 <?php
-   header("Refresh: 3; URL=Login.php");
+   header("Refresh: 3; URL=../Views/Login.php");
+   
 ?>
 
 <!DOCTYPE html>

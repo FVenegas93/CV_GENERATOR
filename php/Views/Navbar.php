@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("../Models/DatabaseConnection.php");
+  //include("../Models/DatabaseConnection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,11 @@
             <li class='nav-item' id='link2'>
               <a class='nav-link' href='../Views/UsersList.php'>Usuarios</a>
             </li>
-          <?php }?>
+          <?php } else if(isset($_SESSION["user"]) && $_SESSION["role"] == "account") { ?>
+            <li class='nav-item' id='link2'>
+              <a class='nav-link' href='../Views/CVsList.php'>Mis CVs</a>
+            </li>
+          <?php } ?>
 
           <?php if(!isset($_SESSION["user"])) { ?>
             <li class='nav-item' id='link3'>

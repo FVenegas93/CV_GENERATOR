@@ -302,7 +302,7 @@ function use_XHR(fo, response) {
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState == 4 && this.status == 200) {
             response.innerHTML = this.responseText;
-            window.location.href = "http://localhost/CV_GENERATOR/php/Views/Redirect.php";
+            window.location.href = "http://localhost/CV_GENERATOR/php/Controllers/Redirect.php";
         }else {
             response.innerHTML = 
             `
