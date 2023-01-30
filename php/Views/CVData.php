@@ -88,9 +88,6 @@ ob_end_flush();
 
                 <button id="btn-lang" class="btn btn-outline-light btn-form" type="submit"<?php if($disabled_submit) echo "disabled";?>>Añadir</button>
 
-                <div id="lang_already_exists">
-                    
-                </div>
             </form>
             
 
