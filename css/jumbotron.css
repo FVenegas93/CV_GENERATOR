@@ -1,6 +1,7 @@
 main {
     padding-left: 10px;
     padding-right: 10px;
+    margin-bottom: 50px;
 }
 
 .spaced {
@@ -11,7 +12,16 @@ main {
     background-image: url("../img/lang.jpg");
 }
 
+.title {
+    background-image: url("../img/title.jpg");
+}
+
 .dark {
     background-color: black;
     color:white;
+}
+
+h2 {
+    color: white;
+    padding-bottom: 5px;
 }
