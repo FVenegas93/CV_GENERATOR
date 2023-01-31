@@ -170,6 +170,6 @@ ob_end_flush();
         </div>
     
     </main>
-    <script src="../../js/scriptLanguages.js"></script>
+    <script src="../../js/scriptCVData.js"></script>
 </body>
 </html>
