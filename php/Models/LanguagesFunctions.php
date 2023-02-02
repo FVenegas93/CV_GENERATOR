@@ -100,5 +100,15 @@ function findLangID($user, $name_lang) {
     return $res;
 }
 
+function removeLangByID($cod_lang) {
+    $query = "DELETE FROM languages where cod_lang = ?";
 
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($cod_lang));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+}
 ?>

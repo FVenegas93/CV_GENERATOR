@@ -3,9 +3,9 @@ ob_start();
     include("../Views/Navbar.php");
     include("../Models/CVFunctions.php");
     include("../Models/LanguagesFunctions.php");
-    include("../Models/CVAttributes.php");
+    include("../Models/TitlesFunctions.php");
 
-
+    //FORMULARIO IDIOMAS
     if(!isset($_SESSION['user']) || $_SESSION['role'] != 'account') {
         header("Location: ../../html/ErrorPage.html");
     }
@@ -48,6 +48,37 @@ ob_start();
     }else {
         header("Location: ../../html/ErrorPage.html");
     }
+
+    //FORMULARIO FORMACIÓN
+    /*if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
+        header("Location: ../../html/ErrorPage.html");
+    }else {
+        if(isset($_GET["cod_cv"])) {
+            $cod_cv = $_GET["cod_cv"];
+            $user = $_SESSION["user"];
+
+            if($_SERVER["REQUEST_METHOD"] == "POST") {
+                $title_name = $_POST["title_name"];
+                $training_center = $_POST["training_center"];
+                $begin = $_POST["title_beginning"];
+                $end = $_POST["title_ending"];
+                $description = ["title_description"];
+
+                if(!findTitleByUserAndTitleName($user, $title_name)) {
+                    createTitleByUser($title_name, $training_center, $begin, $end, $description, $user);
+                    $cod_title = findTitleID($user, $title_name);
+                    createTitleInCV($cod_cv, $cod_title);
+                    header("Location: CVData.php?cod_cv=$cod_cv");
+                }else {
+                    $cod_title = findTitleID($user, $title_name);
+                    createTitleInCV($cod_cv, $cod_title);
+                    header("Location: CVData.php?cod_cv=$cod_cv");
+                }
+            }
+        }
+    }*/
+
+
 
 ob_end_flush();
 ?>

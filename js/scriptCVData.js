@@ -14,19 +14,22 @@ const currentURL = url+param;
 
 //AJAX
 window.addEventListener("load", function(e) {
+    e.preventDefault();
     form_lang.action = currentURL;
     ajax_resp = document.getElementsByClassName('ajax-resp');
-    
+   
     form_lang.addEventListener('submit', (e) => {
         $.ajax({
             type:"POST",
             url: currentURL,
             data: form_lang.serialize(),
-            success: function(data) {
-                alert('Idioma creado');
-            }
+            
+        }).done(function(data) {
+            alert("BUEN IDIOMA");
         });
-        e.preventDefault();
+        
+        
+        
     });
 });
 

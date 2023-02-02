@@ -37,6 +37,9 @@
             <li class='nav-item' id='link2'>
               <a class='nav-link' href='../Views/CVsList.php'>Mis CVs</a>
             </li>
+            <li class='nav-item' id='link4'>
+              <a class='nav-link' href='../Views/UserCVData.php'>Datos CV</a>
+            </li>
           <?php } ?>
 
           <?php if(!isset($_SESSION["user"])) { ?>
