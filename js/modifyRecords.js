@@ -1,26 +1,21 @@
-/*SCRIPT THAT REDIRECTS WHETHER THE LOGIN IS SUCCESSFUL
-OR LET THE USER KNOW IF USERNAME AND/OR PASS ARE WRONG*/
-
 $(document).ready(function() {
-    $('#form-login').bind("submit", function() {
+    $('#lang-form').bind("submit", function() {
         //QUERY AJAX REQUEST SENDING THE FORM DATA
         $.ajax({
             type: $(this).attr("method"),
             url: $(this).attr("action"),
             data: $(this).serialize(),
-            
+                
             complete: function(response) {
                 //IF THE CONTROLLER RESPONSE EQUALS 1 THE LOGIN IS SUCCESSFUL
                 //IF THE LOGIN IS WRONG THEN AN ERROR MESSAGE IS DISPLAYED
                 if(response.responseText == 1) {
-                    window.location.href='../Views/index.php';
-                }else {
-                    $('.invalid-log').css('display', 'block');
-                    $('#invalid-log').html(response.responseText);
+                    window.location.href='../Views/UserLang.php';
                 }
             }
         });
-
+    
         return false;
     });
-});
+ });
+    

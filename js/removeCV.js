@@ -1,4 +1,3 @@
-const remove = document.getElementsByClassName('delete-cv');
 
 const url = "http://localhost/CV_GENERATOR/php/Controllers/RemoveCV.php?cod_cv=";
 const queryString = window.location.search;

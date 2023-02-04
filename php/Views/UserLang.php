@@ -39,7 +39,7 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
                 <td><?php echo $lang["name_lang"]?></td>
                 <td><?php echo $lang["lvl_lang"]?></td>
                 <td>
-                    <a class="mb-0 linkcv" href="#">
+                    <a class="mb-0 linkcv" href="ModifyRecord.php?cod_lang=<?php echo $lang['cod_lang']?>">
                         <img src="../../img/rename.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
                     </a>
                 </td>

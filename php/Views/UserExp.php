@@ -45,7 +45,7 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
                 <td><?php echo $exp["ending"]?></td>
                 <td><?php echo $exp["job"]?></td>
                 <td>
-                    <a class="mb-0 linkcv" href="#">
+                    <a class="mb-0 linkcv" href="ModifyRecord.php?cod_exp=<?php echo $exp['cod_exp']?>">
                         <img src="../../img/rename.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
                     </a>
                 </td>

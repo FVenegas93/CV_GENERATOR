@@ -39,6 +39,28 @@ function findAllLanguagesByUser($user) {
     return $result;
 }
 
+function findLangByID($cod_lang) {
+    $query = "SELECT * FROM languages where cod_lang = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($cod_lang));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    $res = true;
+
+    if ($result->rowCount() == 0) {
+        $res = false;
+    }else {
+        $res = true;
+    }
+
+    return $res;
+}
+
 function findLangageByUserAndLangName($user, $name_lang) {
     $query = "SELECT * FROM languages where username = ? and name_lang = ?";
 
@@ -99,7 +121,17 @@ function findLangID($user, $name_lang) {
 
     return $res;
 }
+function updateLangByID($name_lang, $lvl_lang, $cod_lang) {
+    $query = "UPDATE languages set name_lang = ? , lvl_lang = ? where cod_lang = ?";
 
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($name_lang, $lvl_lang, $cod_lang));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+}
 function removeLangByID($cod_lang) {
     $query = "DELETE FROM languages where cod_lang = ?";
 

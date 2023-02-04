@@ -39,7 +39,7 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
                 <td><?php echo $about["name_about"]?></td>
                 <td><?php echo $about["self_description"]?></td>
                 <td>
-                    <a class="mb-0 linkcv" href="#">
+                    <a class="mb-0 linkcv" href="ModifyRecord.php?cod_about=<?php echo $about['cod_about']?>">
                         <img src="../../img/rename.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
                     </a>
                 </td>

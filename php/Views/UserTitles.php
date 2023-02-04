@@ -45,7 +45,7 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
                 <td><?php echo $title["title_ending"]?></td>
                 <td><?php echo $title["title_description"]?></td>
                 <td>
-                    <a class="mb-0 linkcv" href="#">
+                    <a id="modifyTitle" class="mb-0 linkcv" href="ModifyRecord.php?cod_title=<?php echo $title['cod_title']?>">
                         <img src="../../img/rename.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
                     </a>
                 </td>
@@ -65,7 +65,14 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
     </table>
 </div>
 
+<div id="popping-form" style="display:none">
+<form action="UserTitles.php" method="post" >
+    <input type="text"/>
+</form>
+</div>
 
+
+</form>
 <script>
      function checkRemoveTitle($cod_title) {
             if(confirm("¿De verdad quieres eliminar este Título?")) {
@@ -73,5 +80,6 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
             }
         }
 </script>
+
 </body>
 </html>
