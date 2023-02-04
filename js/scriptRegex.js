@@ -83,16 +83,16 @@ const validateForm = (e) => {
     switch (e.target.name) {
         case "username":
             if(validateInput(regexps.username, username, username.value)) {
-                document.getElementById('wrong1').innerHTML = "";
+                document.getElementById('username_exists').innerHTML = "";
                 bools.username = true;
             }else {
                 bools.username = false;
                 if(username.value == "" || username.value == null ) {
-                    document.getElementById('wrong1').innerHTML = "Este campo no puede estar vacío";
+                    document.getElementById('username_exists').innerHTML = "Este campo no puede estar vacío";
                 }else if(username.value.length < 6 || username.value.length > 14) {
-                    document.getElementById('wrong1').innerHTML = "Introduzca entre 6 y 14 caracteres";
+                    document.getElementById('username_exists').innerHTML = "Introduzca entre 6 y 14 caracteres";
                 }else {
-                    document.getElementById('wrong1').innerHTML = "No se permiten caracteres especiales";
+                    document.getElementById('username_exists').innerHTML = "No se permiten caracteres especiales";
                 }
             }
 
