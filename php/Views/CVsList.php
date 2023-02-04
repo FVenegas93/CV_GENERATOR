@@ -20,7 +20,7 @@
     
 </head>
 <body>
-    
+
     <?php foreach($cvs as $cv) { ?>
         <div class="list-group w-auto cont">
             <div id="main-cont" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">

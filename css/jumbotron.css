@@ -18,6 +18,14 @@ main {
     background-image: url("../img/title.jpg");
 }
 
+.exp {
+    background-image: url("../img/exp.jpg");
+}
+
+.about {
+    background-image: url("../img/about.jpeg");
+}
+
 .dark {
     background-color: black;
     color:white;

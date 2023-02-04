@@ -10,16 +10,19 @@
     <style>
 
         body {
-            height: 750px;
-            padding-left: 58px;
-            padding-right: 58px;  
-            background-color: bisque;   
+            height: 820px;
+            padding-top: 20px;
+            background-color: bisque; 
+            text-align: center; 
+            overflow-y: hidden;
         }
 
         .cont {
             background-image: url("../img/404.jpg");
+            background-repeat: no-repeat;
             height: 100%;
             padding-top: 150px;
+            text-align: center;
         }
 
         #heading {
@@ -46,6 +49,16 @@
 
         p {
             color: white;
+        }
+
+        @media (max-width: 412px) {
+            .cont {
+            background-image: url("../img/4041.jpg");
+            background-repeat: no-repeat;
+            margin-top: 150px;
+            padding-top: 30px !important;
+            text-align: center;
+            }
         }
     </style>
 </head>

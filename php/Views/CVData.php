@@ -5,6 +5,7 @@ ob_start();
     include("../Models/LanguagesFunctions.php");
     include("../Models/TitlesFunctions.php");
     include("../Models/AboutmeFunctions.php");
+    include("../Models/ExperiencesFunctions.php");
 
     //FORMULARIO IDIOMAS
     if(!isset($_SESSION['user']) || $_SESSION['role'] != 'account') {
@@ -79,6 +80,35 @@ ob_start();
         }
     }
 
+    //EXPERIENCES FORM
+    if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
+        header("Location: ../../html/ErrorPage.html");
+    }
+        
+    if(isset($_GET["cod_cv"])) {
+        $cod_cv = $_GET["cod_cv"];
+        $user = $_SESSION["user"];
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add-exp"])) {
+            $name_exp = $_POST["name_exp"];
+            $business = $_POST["business"];
+            $begin = $_POST["exp_beginning"];
+            $end = $_POST["exp_ending"];
+            $job = $_POST["job"];
+           
+            if(!findExpByUserAndExpName($user, $name_exp)) {
+                createExpByUser($name_exp, $business, $begin, $end, $job, $user);
+                $cod_exp = findExpID($user, $name_exp)["cod_exp"];
+                createExpInCV($cod_cv, $cod_exp);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }else {
+                $cod_exp = findExpID($user, $name_exp)["cod_exp"];
+                createExpInCV($cod_cv, $cod_exp);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }
+        }
+    }
+
     //ABOUT FORM
     if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
         header("Location: ../../html/ErrorPage.html");
@@ -124,6 +154,7 @@ ob_end_flush();
 </head>
 <body>
     <main>
+    <h2 class="pb-2 border-bottom darkh2">Añade lo que necesites a tu CV ingresando datos en los formularios</h2>
         <div class="row align-items-md-stretch">
         <div class="col-md-6">
             <div class="h-100 p-5 text-bg-dark rounded-3 padded">
@@ -221,26 +252,51 @@ ob_end_flush();
 
         <div class="row align-items-md-stretch spaced">
         <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Experiencia Laboral</h2>
+            <div class="h-100 p-5 bg-light border rounded-3 exp">
+            <h2 class='darkh2'>Experiencia Laboral</h2>
            
                 <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="exp-form">
 
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="aboutInput1" name="name_about" placeholder="Nombre descripción" />
-                        <label for="aboutInput1">Nombre de la descripción</label>
+                        <input type="text" class="form-control" id="expInput1" name="name_exp" placeholder="Nombre experiencia" />
+                        <label for="expInput1">Nombre de la experiencia</label>
                     </div>
                     <div class="wrong">
                         <p id="wrong1"></p>
                     </div>
 
                     <div class="form-floating">
-                        <textarea class="form-control" id="aboutInput2" name="self_description" max="255"></textarea>
-                        <label for="aboutInput2">Descríbete</label>
+                        <input type="text" class="form-control" id="expInput2" name="business" placeholder="Empresa" />
+                        <label for="expInput2">Empresa</label>
                     </div>
                     <div class="wrong">
                         <p id="wrong2"></p>
                     </div>
+
+                    <div>
+                        <div class="form-floating float-start w-50">
+                            <input type="number" class="form-control" id="expInput3" name="exp_beginning" min="1940" max="2023"/>
+                            <label for="expInput3" class="label">Año de Inicio</label>
+                        </div>
+                            
+                        <div class="form-floating float-end w-50">
+                            <input type="number" class="form-control" id="expInput4" name="exp_ending" min="1940" max="2023"/>
+                            <label for="expInput4" class="label">Año de Finalización</label>
+                        </div>
+                    </div>
+
+                    <div class="wrong">
+                        <p id="wrong3"></p>
+                    </div>
+
+                    <div class="form-floating float-start w-100">
+                        <input type="text" class="form-control" id="expInput5" name="job" placeholder="Puesto" />
+                        <label for="expInput5">Puesto</label>
+                    </div>
+                    <div class="wrong">
+                        <p id="wrong4"></p>
+                    </div>
+                    
 
                     <button id="btn-lang" name="add-exp" class="btn btn-outline-light btn-form nml" type="submit">Añadir Exp</button>
 
@@ -249,7 +305,7 @@ ob_end_flush();
         </div>
 
         <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3">
+            <div class="h-100 p-5 bg-light border rounded-3 about">
             <h2 class="darkh2">Sobre mí</h2>
             <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="about-form">
 
