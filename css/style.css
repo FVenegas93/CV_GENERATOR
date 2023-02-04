@@ -206,6 +206,21 @@ footer ul li a svg:hover {
     color: rgb(154, 204, 220) !important;
 }
 
+/*DROPDOWN NAVBAR STYLE*/
+.drop-btn {
+    color: rgb(154, 204, 220);
+    background-color: #383f47;
+}
+
+.drop-btn:hover {
+    background-color: rgb(154, 204, 220);
+    color: black;
+}
+
+.dropdown-menu {
+    background-color: #383f47;
+}
+
 
 /*MEDIA QUERY FOR NAVIGATION BAR*/
 @media screen and (max-width: 576px) {

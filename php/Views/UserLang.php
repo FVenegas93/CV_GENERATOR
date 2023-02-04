@@ -21,13 +21,14 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
 </head>
 <body>
     <div class="table-responsive-sm">
-    <table class="table caption-top table-lg ">
+    <table class="table caption-top table-sm ">
         <caption><h4>Listado de idiomas</h4></caption>
         <thead>
             <tr class="lead">
                 <th>Idioma</th>
                 <th>Nivel</th>
-                <th>Acciones</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +38,16 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
             <tr>
                 <td><?php echo $lang["name_lang"]?></td>
                 <td><?php echo $lang["lvl_lang"]?></td>
-                <td><a class="mb-0 opacity-75 linkcv" href="javascript: checkRemoveLang('<?php echo $lang["cod_lang"] ?>')">Eliminar idioma</a></td>
+                <td>
+                    <a class="mb-0 linkcv" href="#">
+                        <img src="../../img/rename.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
+                    </a>
+                </td>
+                <td>
+                    <a class="mb-0 opacity-75 linkcv" href="javascript: checkRemoveLang('<?php echo $lang["cod_lang"] ?>')">
+                        <img src="../../img/delete.png" class="opacity-85" alt="twbs" width="30" height="30" class="rounded-circle flex-shrink-0">
+                    </a>
+                </td>
             </tr>
 
             <?php
@@ -47,7 +57,11 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
         
         
     </table>
+
+
 </div>
+
+
 <script>
      function checkRemoveLang($cod_lang) {
             if(confirm("¿De verdad quieres eliminar este Idioma?")) {

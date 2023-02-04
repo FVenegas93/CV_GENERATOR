@@ -37,9 +37,16 @@
             <li class='nav-item' id='link2'>
               <a class='nav-link' href='../Views/CVsList.php'>Mis CVs</a>
             </li>
-            <li class='nav-item' id='link4'>
-              <a class='nav-link' href='../Views/UserCVData.php'>Datos CV</a>
-            </li>
+
+            <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle drop-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Mis Datos</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="UserLang.php">Idiomas</a></li>
+                <li><a class="dropdown-item" href="UserTitles.php">Títulos</a></li>
+                <li><a class="dropdown-item" href="UserExp.php">Experiencia</a></li>
+                <li><a class="dropdown-item" href="UserAbout.php">Sobre mí</a></li>
+              </ul>
+            </div>
           <?php } ?>
 
           <?php if(!isset($_SESSION["user"])) { ?>

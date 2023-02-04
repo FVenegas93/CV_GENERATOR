@@ -61,4 +61,30 @@
     
         return $res;
     }
+
+    function findAllTitlesByUser($user) {
+        $query = "SELECT * FROM titles where username = ?";
+    
+        try {
+            $result = $GLOBALS["bd"]->prepare($query);
+            $result->execute(array($user));
+        }catch(PDOException $e) {
+            echo "Error en la conexión " . $e->getMessage();
+            header("Location: ../../html/ErrorPage.html");
+        }
+    
+        return $result;
+    }
+
+    function removeTitleByID($cod_title) {
+        $query = "DELETE FROM titles where cod_title = ?";
+    
+        try {
+            $result = $GLOBALS["bd"]->prepare($query);
+            $result->execute(array($cod_title));
+        }catch(PDOException $e) {
+            echo "Error en la conexión " . $e->getMessage();
+            header("Location: ../../html/ErrorPage.html");
+        }
+    }
 ?>

@@ -2,9 +2,9 @@
     include("Navbar.php");
     include("../Models/UserFunctions.php");
 
-    /*if(!isset($_SESSION["user"]) || $_SESSION["role"] != "admin") {
+    if(!isset($_SESSION["user"]) || $_SESSION["role"] != "admin") {
         header("Location: ../../html/ErrorPage.html");
-    }*/
+    }
 
     $users = findAllUsers();
 ?>
