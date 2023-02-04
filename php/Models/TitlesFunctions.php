@@ -14,7 +14,7 @@
     }
 
     function createTitleInCV($cod_cv, $cod_title) {
-        $query = "INSERT INTO cv_has_title(cod_cv, cod_title) VALUES(?, ?)";
+        $query = "INSERT INTO cv_has_title (cod_cv, cod_title) VALUES (?, ?)";
 
         try {
             $result = $GLOBALS["bd"]->prepare($query);

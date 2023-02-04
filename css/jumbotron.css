@@ -8,8 +8,10 @@ main {
     padding-top: 10px;
 }
 
-.lang {
+.padded {
     background-image: url("../img/lang.jpg");
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
 }
 
 .title {
@@ -24,4 +26,27 @@ main {
 h2 {
     color: white;
     padding-bottom: 5px;
+}
+
+.darkh2 {
+    color: black;
+}
+
+
+.label {
+    color: black;
+}
+
+.nml {
+    margin-left: 0px !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.w-100 {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

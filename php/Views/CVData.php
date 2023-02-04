@@ -4,6 +4,7 @@ ob_start();
     include("../Models/CVFunctions.php");
     include("../Models/LanguagesFunctions.php");
     include("../Models/TitlesFunctions.php");
+    include("../Models/AboutmeFunctions.php");
 
     //FORMULARIO IDIOMAS
     if(!isset($_SESSION['user']) || $_SESSION['role'] != 'account') {
@@ -26,7 +27,7 @@ ob_start();
             $disabled_submit = false;
         }
 
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add-lang'])) {
             
             $name_lang = $_POST["name_lang"];
             $lvl_lang = $_POST["lvl_lang"];
@@ -49,34 +50,61 @@ ob_start();
         header("Location: ../../html/ErrorPage.html");
     }
 
-    //FORMULARIO FORMACIÓN
-    /*if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
+    //TITLES FORM
+    if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
         header("Location: ../../html/ErrorPage.html");
-    }else {
-        if(isset($_GET["cod_cv"])) {
-            $cod_cv = $_GET["cod_cv"];
-            $user = $_SESSION["user"];
+    }
+        
+    if(isset($_GET["cod_cv"])) {
+        $cod_cv = $_GET["cod_cv"];
+        $user = $_SESSION["user"];
 
-            if($_SERVER["REQUEST_METHOD"] == "POST") {
-                $title_name = $_POST["title_name"];
-                $training_center = $_POST["training_center"];
-                $begin = $_POST["title_beginning"];
-                $end = $_POST["title_ending"];
-                $description = ["title_description"];
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add-title"])) {
+            $title_name = $_POST["name_title"];
+            $training_center = $_POST["training_center"];
+            $begin = $_POST["title_beginning"];
+            $end = $_POST["title_ending"];
+            $description = $_POST["title_description"];
 
-                if(!findTitleByUserAndTitleName($user, $title_name)) {
-                    createTitleByUser($title_name, $training_center, $begin, $end, $description, $user);
-                    $cod_title = findTitleID($user, $title_name);
-                    createTitleInCV($cod_cv, $cod_title);
-                    header("Location: CVData.php?cod_cv=$cod_cv");
-                }else {
-                    $cod_title = findTitleID($user, $title_name);
-                    createTitleInCV($cod_cv, $cod_title);
-                    header("Location: CVData.php?cod_cv=$cod_cv");
-                }
+            if(!findTitleByUserAndTitleName($user, $title_name)) {
+                createTitleByUser($title_name, $training_center, $begin, $end, $description, $user);
+                $cod_title = findTitleID($user, $title_name)["cod_title"];
+                createTitleInCV($cod_cv, $cod_title);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }else {
+                $cod_title = findTitleID($user, $title_name);
+                createTitleInCV($cod_cv, $cod_title)["cod_title"];
+                header("Location: CVData.php?cod_cv=$cod_cv");
             }
         }
-    }*/
+    }
+
+    //ABOUT FORM
+    if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
+        header("Location: ../../html/ErrorPage.html");
+    }
+        
+    if(isset($_GET["cod_cv"])) {
+        $cod_cv = $_GET["cod_cv"];
+        $user = $_SESSION["user"];
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add-about"])) {
+            $name_about = $_POST["name_about"];
+            $desc = $_POST["self_description"];
+           
+            if(!findAboutByUserAndName($user, $name_about)) {
+                createAboutByUser($name_about, $desc, $user);
+                $cod_about = findAboutID($user, $name_about)["cod_about"];
+                createAboutInCV($cod_cv, $cod_about);
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }else {
+                $cod_about = findAboutID($user, $name_about);
+                createAboutInCV($cod_cv, $cod_about)["cod_about"];
+                header("Location: CVData.php?cod_cv=$cod_cv");
+            }
+        }
+    }
+    
 
 
 
@@ -98,7 +126,7 @@ ob_end_flush();
     <main>
         <div class="row align-items-md-stretch">
         <div class="col-md-6">
-            <div class="h-100 p-5 text-bg-dark rounded-3 lang">
+            <div class="h-100 p-5 text-bg-dark rounded-3 padded">
             <h2>Idiomas</h2>
 
             <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="lang-form">
@@ -110,15 +138,21 @@ ob_end_flush();
                     <?php if(!$french) {echo "<option value='Francés'>Francés</option>";}?>
                     <?php if(!$german) {echo "<option value='Alemán'>Alemán</option>";}?>
                 </select>
+                <div class="wrong">
+                    <p></p>
+                </div>
 
-                <select id="lvl-lang" name="lvl_lang" class="form-select form-select-sm dark" aria-label=".form-select-sm example">
+                <select id="lvl-lang" name="lvl_lang" class="form-select form-select-lg mb-3 dark" aria-label=".form-select-lg example">
                     <option selected value="Nativo">Nativo</option>
                     <option value="Alto">Alto</option>
                     <option value="Medio">Medio</option>
                     <option value="Bajo">Bajo</option>
                 </select>
+                <div class="wrong">
+                    <p></p>
+                </div>
 
-                <button id="btn-lang" class="btn btn-outline-light btn-form" type="submit"<?php if($disabled_submit) echo "disabled";?>>Añadir</button>
+                <button id="btn-lang" class="btn btn-outline-light btn-form nml" name="add-lang" type="submit"<?php if($disabled_submit) echo "disabled";?>>Añadir Idioma</button>
 
             </form>
             
@@ -127,12 +161,13 @@ ob_end_flush();
             </div>
         </div>
         <div class="col-md-6">
-            <div class="h-100 p-5 bg-light border rounded-3 title">
+            <div class="h-100 p-5 bg-light border rounded-3 title padded">
             <h2>Formación</h2>
+            
             <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="title-form">
-
-                <select id="title_name" name="title_name" class="form-select form-select-lg mb-3 dark" aria-label=".form-select-lg example">
-                    <option value="#" selected disabled>Seleccione un nivel formativo</option>
+               
+                <select id="title_name" name="name_title" class="form-select form-select-lg mb-3 dark" aria-label=".form-select-lg example">
+                    <option value="#" selected disabled>Estudios</option>
                     <option value="Enseñanza Secundaria Obligatoria">Enseñanza Secundaria Obligatoria</option>
                     <option value="Bachillerato">Bachillerato</option>
                     <option value="Ciclo Formativo Grado Medio"> Ciclo Formativo Grado Medio</option>
@@ -148,54 +183,95 @@ ob_end_flush();
                     <input type="text" class="form-control" id="titleInput1" name="training_center" placeholder="Centro de formación" />
                     <label for="titleInput1">Centro formativo</label>
                 </div>
+                
                 <div class="wrong">
                     <p id="wrong1"></p>
                 </div>
 
-                <div class="form-floating">
-                    <input type="number" class="form-control" id="titleInput2" name="title_beginning" min="1940" max="2023"/>
-                    <label for="titleInput2">Año de Inicio</label>
+                <div>
+                    <div class="form-floating float-start w-50">
+                        <input type="number" class="form-control" id="titleInput2" name="title_beginning" min="1940" max="2023"/>
+                        <label for="titleInput2" class="label">Año de Inicio</label>
+                    </div>
+                        
+                    <div class="form-floating float-end w-50">
+                        <input type="number" class="form-control" id="titleInput3" name="title_ending" min="1940" max="2023"/>
+                        <label for="titleInput3" class="label">Año de Finalización</label>
+                    </div>
                 </div>
+                
+                
                 <div class="wrong">
-                    <p id="wrong1"></p>
+                    <p id="wrong2"></p>
                 </div>
 
-                <div class="form-floating">
-                    <input type="number" class="form-control" id="titleInput3" name="title_ending" min="1940" max="2023"/>
-                    <label for="titleInput3">Año de Finalización</label>
-                </div>
-                <div class="wrong">
-                    <p id="wrong1"></p>
-                </div>
-
-                <div class="form-floating">
+                <div class="form-floating float-start w-100">
                     <textarea class="form-control" id="titleInput4" name="title_description" max="255"></textarea>
                     <label for="titleInput4">Descripción de la formación</label>
                 </div>
-                <div class="wrong">
-                    <p id="wrong1"></p>
-                </div>
+                
 
-                <button id="btn-lang" class="btn btn-outline-light btn-form" type="submit">Añadir</button>
+                <button id="btn-lang" name="add-title" class="btn btn-outline-light btn-form nml" type="submit">Añadir Titulación</button>
 
             </form>
 
             </div>
         </div>
         </div>
+
         <div class="row align-items-md-stretch spaced">
         <div class="col-md-6">
-            <div class="h-100 p-5 text-bg-dark rounded-3">
-            <h2>Change the background</h2>
-            <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-            <button class="btn btn-outline-light" type="button">Example button</button>
+            <div class="h-100 p-5 bg-light border rounded-3">
+            <h2>Experiencia Laboral</h2>
+           
+                <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="exp-form">
+
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="aboutInput1" name="name_about" placeholder="Nombre descripción" />
+                        <label for="aboutInput1">Nombre de la descripción</label>
+                    </div>
+                    <div class="wrong">
+                        <p id="wrong1"></p>
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea class="form-control" id="aboutInput2" name="self_description" max="255"></textarea>
+                        <label for="aboutInput2">Descríbete</label>
+                    </div>
+                    <div class="wrong">
+                        <p id="wrong2"></p>
+                    </div>
+
+                    <button id="btn-lang" name="add-exp" class="btn btn-outline-light btn-form nml" type="submit">Añadir Exp</button>
+
+                </form>
             </div>
         </div>
+
         <div class="col-md-6">
             <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Add borders</h2>
-            <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-            <button class="btn btn-outline-secondary" type="button">Example button</button>
+            <h2 class="darkh2">Sobre mí</h2>
+            <form action="CVData.php?cod_cv=<?php echo $cod_cv;?>" method="POST" id="about-form">
+
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="aboutInput1" name="name_about" placeholder="Nombre descripción" />
+                        <label for="aboutInput1">Nombre de la descripción</label>
+                    </div>
+                    <div class="wrong">
+                        <p id="wrong1"></p>
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea class="form-control" id="aboutInput2" name="self_description" max="255"></textarea>
+                        <label for="aboutInput2">Descríbete</label>
+                    </div>
+                    <div class="wrong">
+                        <p id="wrong2"></p>
+                    </div>
+
+                    <button id="btn-lang" name="add-about" class="btn btn-outline-light btn-form nml" type="submit">Añadir Sobre mí</button>
+
+                </form>
             </div>
         </div>
         </div>

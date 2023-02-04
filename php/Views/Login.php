@@ -1,35 +1,8 @@
 <?php
-    ob_start();
-    include("Navbar.php");
-    include("../Models/UserFunctions.php");
-    //VAR FOR WRONG USER AND/OR PASS
-    $wrong_login = false;
+ob_start();
+include("Navbar.php");
 
-    //IF USER IS ALREADY SIGNED IN, HE WILL BE LOCATED TO ERROR PAGE
-    if(isset($_SESSION["user"])) {
-        header('Location: ../../html/ErrorPage.html');
-    }else {
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $user = $_POST["user"];
-            $passwd = $_POST["pass"];
-            $user_found = validateUser($user, $passwd);
-            $is_admin = isAdmin($user);
 
-            if($user_found == true) {
-                $wrong_login = false;
-                $_SESSION["user"] = $user;
-                if($is_admin) {
-                    $_SESSION["role"] = "admin";
-                }else {
-                    $_SESSION["role"] = "account";
-                }
-                header('Location: ../Views/');
-            }else {
-                $wrong_login = true;
-            }
-            
-        }
-    }
 ob_end_flush();
 ?>
 
@@ -42,23 +15,26 @@ ob_end_flush();
     <title>Login</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body class="text-center">
     <main class="form-signin w-100 m-auto login-form" >
-        <form action="Login.php" method="POST">  
+        <form action="../Controllers/LoginValidation.php" method="POST" id="form-login">  
             <h2 class="title-form">Inicio de Sesión</h2>
-        <?php   
-            if($wrong_login == true) {
-                echo "<h6 class='error'>Credenciales erróneas</h6>";
-            }
-        ?>
+            
+            <div class="invalid-log"><p id="invalid-log"></p></div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="user" placeholder="Tu usuario"/>
+                <input type="text" class="form-control" id="user" name="user" placeholder="Tu usuario"/>
                 <label for="floatingInput">Cuenta de usuario</label>
             </div>
+
+            <div>
+                <p></p>
+            </div>
+
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingInput" name="pass" placeholder="Tu contraseña"/>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Tu contraseña"/>
                 <label for="floatingInput">Contraseña</label>
             </div>
             <div class="btn-group">
@@ -67,5 +43,8 @@ ob_end_flush();
             </div>
         </form>
     <main>
+        <script src="../../js/login.js">
+
+        </script>
 </body>
 </html>

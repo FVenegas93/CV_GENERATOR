@@ -118,11 +118,17 @@ body {
 }
 
 .valid-input {
-    background-color: lightgreen;
+    border-style: solid;
+    border-width: 2px;
+    border-color: limegreen;
+    background-color: rgb(198, 255, 198);
 }
 
 .invalid-input {
-    background-color: lightcoral;
+    border-style: solid;
+    border-width: 2px;
+    border-color: crimson;
+    background-color: rgb(255, 218, 225);
 }
 
 .disabled-submit {
@@ -137,11 +143,22 @@ body {
 }
 
 .wrong {
-    background-color: crimson !important;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
+    background-color: lightcoral;
+    border-radius: 4px;
+    font-weight: 500;
 }
+
+/*CSS RULES FOR WRONG LOGIN */
+.invalid-log {
+    display: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: crimson;
+    border-radius: 4px;
+    background-color: rgb(255, 218, 225);
+    font-weight: 500;
+}
+
 
 /*CSS RULES FOR CREATE ADDRESS FORM*/
 .create-address-form {

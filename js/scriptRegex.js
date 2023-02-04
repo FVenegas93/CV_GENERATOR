@@ -253,7 +253,7 @@ username.addEventListener('blur', function(){
         url:'../Controllers/UsernameAvailability.php',
         data: dataString,
         success:function(data){
-            $('#username_exists').fadeIn(500).html(data); 
+            $('#wrong1').fadeIn(500).html(data); 
             $.ajax({
                 type:'GET',
                 url: '../../json/bool.json',
