@@ -27,14 +27,13 @@
             <img src="../../img/cvicon.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                 <div class="d-flex gap-2 w-100 justify-content-between">
                 <div>
-                    <h6><?php echo $cv["name_cv"];?>
-                           
-                    </h6>
-                    <a class="mb-0 linkcv" href="#">Some placeholder content in a paragraph.</a><br>
+                    <h6><?php echo $cv["name_cv"];?></h6>
+
+                    <a class="mb-0 linkcv" href="CVView.php?cod_cv=<?php echo $cv['cod_cv']?>">Ver CV</a><br>
+                    
                     <a class="mb-0 linkcv" id="rename-link" href="../Controllers/RenameCVForm.php?cod_cv=<?php echo $cv['cod_cv'] ?>"> Renombrar proyecto 
                         <img src="../../img/rename.png" alt="twbs" width="20" height="20" class="rounded-circle flex-shrink-0">
                     </a><br>
-                    
                     
                     <a class="mb-0 linkcv" href="CVData.php?cod_cv=<?php echo $cv['cod_cv'] ?>">Añadir Datos al CV</a><br>
                     

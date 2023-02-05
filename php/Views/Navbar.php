@@ -45,6 +45,7 @@
                 <li><a class="dropdown-item" href="UserTitles.php">Títulos</a></li>
                 <li><a class="dropdown-item" href="UserExp.php">Experiencia</a></li>
                 <li><a class="dropdown-item" href="UserAbout.php">Sobre mí</a></li>
+                <li><a class="dropdown-item" href="UserPersonalData.php">Datos personales</a></li>
               </ul>
             </div>
           <?php } ?>
@@ -70,7 +71,7 @@
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap" fill="blue"/></svg>
       </a>
-      <span class="mb-3 mb-md-0">&copy; 2023 Company, Inc</span>
+      <span class="mb-3 mb-md-0">&copy; 2023 CV GENERATOR, Inc</span>
     </div>
 
     <ul class="nav col-md-4 justify-content-end d-flex">

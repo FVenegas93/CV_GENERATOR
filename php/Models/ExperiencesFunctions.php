@@ -31,6 +31,28 @@ function createExpInCV($cod_cv, $cod_exp) {
     }
 }
 
+function findExpByID($cod_exp) {
+    $query = "SELECT * FROM experiences where cod_exp = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($cod_exp));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    $res = true;
+
+    if ($result->rowCount() == 0) {
+        $res = false;
+    }else {
+        $res = true;
+    }
+
+    return $res;
+}
+
 /*
 This function finds an experience register by the username and returns the query's result
 */
@@ -70,6 +92,23 @@ function findExpByUserAndExpName($user, $name_exp) {
     return $res;
 }
 
+function findExpByUserAndCV($user, $cod_cv) {
+    $query = "SELECT experiences.* FROM experiences, cv_has_exp
+    where experiences.username = ?
+    and cv_has_exp.cod_cv = ?
+    and experiences.cod_exp = cv_has_exp.cod_exp";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($user, $cod_cv));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    return $result;
+}
+
 function findExpByUserAndExpNameAndCV($user, $name_exp, $cod_cv) {
     $query = "SELECT experiences.* FROM experiences, cv_has_exp 
     where experiences.username = ? and experiences.name_exp = ? 
@@ -107,6 +146,18 @@ function findExpID($user, $name_exp) {
     }
 
     return $res;
+}
+
+function updateExpByID($name_exp, $business, $begin, $end, $job, $cod_exp) {
+    $query = "UPDATE experiences set name_exp = ? , business = ?, beginning = ?, ending = ?, job = ? where cod_exp = ?";
+    
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($name_exp, $business, $begin, $end, $job, $cod_exp));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
 }
 
 function removeExpByID($cod_exp) {

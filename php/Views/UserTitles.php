@@ -22,7 +22,7 @@ if(!isset($_SESSION['user']) || $_SESSION['role'] != "account") {
 <body>
     <div class="table-responsive-sm">
     <table class="table caption-top table-sm ">
-        <caption><h4>Listado de idiomas</h4></caption>
+        <caption><h4>Listado de titulaciones</h4></caption>
         <thead>
             <tr class="lead">
                 <th>Título</th>

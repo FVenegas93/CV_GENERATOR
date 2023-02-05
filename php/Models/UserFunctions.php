@@ -12,6 +12,13 @@ function findUserByUser($user) {
     return $res;
 }
 
+function findAllDataByUser($user) {
+    $query = "SELECT * FROM users WHERE username = '$user'";
+    $result = $GLOBALS["bd"]->query($query);
+    
+    return $result;
+}
+
 function createUser($user, $pass, $email, $f_name, $f_surname, $nif, $address, $country, $region, $city, $phone, $admin, $code) {
     $query = "INSERT into users(username, passwd, email, first_name, first_surname, nif, address, country, region, city, phone, is_admin, activation_code)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -115,7 +122,19 @@ function updateUsernameAddress($address, $country, $region, $city, $user) {
         $result->execute(array($address, $country, $region, $city, $user));
     }catch(PDOException $e) {
         echo "Error en la conexión " . $e->getMessage();
-        //header("Location: ../../html/ErrorPage.html");
+        header("Location: ../../html/ErrorPage.html");
+    }
+}
+
+function updateUser($name, $surname, $nif, $address, $country, $region, $city, $user) {
+    $query = "UPDATE users set first_name = ?, first_surname = ?, nif = ?, address = ?, country = ?, region = ?, city = ? where username = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($name, $surname, $nif, $address, $country, $region, $city, $user));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
     }
 }
 

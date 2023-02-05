@@ -1,0 +1,12 @@
+.not-padded {
+    padding: 0px !important;
+}
+
+.coloured {
+    color: goldenrod;
+    padding-bottom: 10px;
+}
+
+.name {
+    color:darkturquoise !important;
+}

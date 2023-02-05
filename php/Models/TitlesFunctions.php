@@ -25,6 +25,28 @@
         }
     }
 
+    function findTitleByID($cod_title) {
+        $query = "SELECT * FROM titles where cod_title = ?";
+    
+        try {
+            $result = $GLOBALS["bd"]->prepare($query);
+            $result->execute(array($cod_title));
+        }catch(PDOException $e) {
+            echo "Error en la conexión " . $e->getMessage();
+            header("Location: ../../html/ErrorPage.html");
+        }
+    
+        $res = true;
+    
+        if ($result->rowCount() == 0) {
+            $res = false;
+        }else {
+            $res = true;
+        }
+    
+        return $res;
+    }
+
     function findTitleByUserAndTitleName($user, $name) {
         $query = "SELECT * FROM titles where username = ? and name_title = ?";
 
@@ -45,6 +67,23 @@
     }
 
     return $res;
+    }
+
+    function findTitlesByUserAndCV($user, $cod_cv) {
+        $query = "SELECT titles.* FROM titles, cv_has_title
+        where titles.username = ?
+        and cv_has_title.cod_cv = ?
+        and titles.cod_title = cv_has_title.cod_title";
+    
+        try {
+            $result = $GLOBALS["bd"]->prepare($query);
+            $result->execute(array($user, $cod_cv));
+        }catch(PDOException $e) {
+            echo "Error en la conexión " . $e->getMessage();
+            header("Location: ../../html/ErrorPage.html");
+        }
+    
+        return $result;
     }
 
     function findTitleID($user, $name_title) {
@@ -75,6 +114,19 @@
     
         return $result;
     }
+
+    function updateTitleByID($name_title, $training_center, $begin, $end, $desc, $cod_title) {
+        $query = "UPDATE titles set name_title = ? , training_center = ?, title_beginning = ?, title_ending = ?, title_description = ? where cod_title = ?";
+    
+        try {
+            $result = $GLOBALS["bd"]->prepare($query);
+            $result->execute(array($name_title, $training_center, $begin, $end, $desc, $cod_title));
+        }catch(PDOException $e) {
+            echo "Error en la conexión " . $e->getMessage();
+            header("Location: ../../html/ErrorPage.html");
+        }
+    }
+    
 
     function removeTitleByID($cod_title) {
         $query = "DELETE FROM titles where cod_title = ?";

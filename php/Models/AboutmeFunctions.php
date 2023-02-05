@@ -39,6 +39,45 @@ function findAllAboutsByUser($user) {
     return $result;
 }
 
+function findAboutsByUserAndCV($user, $cod_cv) {
+    $query = "SELECT about.* FROM about, cv_has_about
+    where about.username = ?
+    and cv_has_about.cod_cv = ?
+    and about.cod_about = cv_has_about.cod_about";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($user, $cod_cv));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    return $result;
+}
+
+function findAboutByID($cod_about) {
+    $query = "SELECT * FROM about where cod_about = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($cod_about));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    $res = true;
+
+    if ($result->rowCount() == 0) {
+        $res = false;
+    }else {
+        $res = true;
+    }
+
+    return $res;
+}
+
 function findAboutByUserAndName($user, $name) {
     $query = "SELECT * FROM about where username = ? and name_about = ?";
 
@@ -98,6 +137,18 @@ function findAboutID($user, $name) {
     }
 
     return $res;
+}
+
+function updateAboutByID($name_about, $desc, $cod_about) {
+    $query = "UPDATE about set name_about = ? , self_description = ? where cod_about = ?";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($name_about, $desc, $cod_about));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
 }
 
 function removeAboutByID($cod_about) {

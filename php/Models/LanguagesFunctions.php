@@ -83,6 +83,23 @@ function findLangageByUserAndLangName($user, $name_lang) {
     return $res;
 }
 
+function findLanguagesByUserAndCV($user, $cod_cv) {
+    $query = "SELECT languages.* FROM languages, cv_has_lang
+    where languages.username = ?
+    and cv_has_lang.cod_cv = ?
+    and languages.cod_lang = cv_has_lang.cod_lang";
+
+    try {
+        $result = $GLOBALS["bd"]->prepare($query);
+        $result->execute(array($user, $cod_cv));
+    }catch(PDOException $e) {
+        echo "Error en la conexión " . $e->getMessage();
+        header("Location: ../../html/ErrorPage.html");
+    }
+
+    return $result;
+}
+
 function findLangageByUserAndLangNameAndCV($user, $name_lang, $cod_cv) {
     $query = "SELECT languages.* FROM languages, cv_has_lang 
     where languages.username = ? and languages.name_lang = ? 
@@ -121,6 +138,7 @@ function findLangID($user, $name_lang) {
 
     return $res;
 }
+
 function updateLangByID($name_lang, $lvl_lang, $cod_lang) {
     $query = "UPDATE languages set name_lang = ? , lvl_lang = ? where cod_lang = ?";
 
@@ -132,6 +150,7 @@ function updateLangByID($name_lang, $lvl_lang, $cod_lang) {
         header("Location: ../../html/ErrorPage.html");
     }
 }
+
 function removeLangByID($cod_lang) {
     $query = "DELETE FROM languages where cod_lang = ?";
 

@@ -23,8 +23,6 @@
         if($error_code == 1) {
             echo $error_code;
             updateLangByID($name_lang, $lvl_lang, $cod_lang);
-        }else {
-            echo "<p id='invalid-log'>Credenciales erróneas</p>";
         }
         
     }else{
