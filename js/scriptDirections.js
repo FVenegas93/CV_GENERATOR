@@ -1,14 +1,17 @@
-
+//VARS WHICH TAKES THE SELECT INPUT ELEMENT AND THE ADDRESS INPUT
 var select = document.getElementById('input1');
 var select2 = document.getElementById('input2');
 var select3 = document.getElementById('input3');
 var select4 = document.getElementById('input4');
 var input5 = document.getElementById('input5');
+
+//VAR WHICH HAS THE FORM
 var form_address =  document.getElementById('form_address');
 
+//CONTROLLER CONST
 const url2 = "http://localhost/CV_GENERATOR/php/Controllers/CreateAddress.php";
 
-
+//AJAX REQUEST TO LIST ALL THE COUNTRIES INHERITED TO THE API
 $(document).ready(function() {
     $.ajax({
     
@@ -28,7 +31,7 @@ $(document).ready(function() {
 });
 
 
-
+//EVENTS WHICH CHANGES THE CONTENT OF A SELECT CALLING AN AJAX REQUEST
 select.addEventListener('change', function() {
     
     $.ajax({
@@ -47,6 +50,7 @@ select.addEventListener('change', function() {
         addRegionOptions(select2, dt_sp, dt_fr, dt_it, selected_option);
     });
 });
+
 
 select2.addEventListener('change', function() {
 
@@ -72,20 +76,22 @@ select2.addEventListener('change', function() {
 
     });
 });
- 
+
+//EVENT THAT SEND THE FORM TO THE SERVER
 form_address.addEventListener('submit', (e) => {
     var ajax_resp = document.getElementById('ajax_resp2');
     e.preventDefault();
     use_XHR(form_address, ajax_resp);
 });
 
-
+//FUNCTION WHICH REMOVES THE OPTION OF A SELECT INPUT ELEMENT
 function removeOptions(selectElement) {
     for(var i = selectElement.options.length; i >= 0; i--) {
         selectElement.remove(i);
     }
 }
 
+//FUNCTIONS WHICH ADDS OPTIONS ON A SELECT INPUT ELEMENT
 function addRegionOptions(slct2, dt1, dt2, dt3, selected_opt) {
     
     switch(selected_opt) {
@@ -197,6 +203,7 @@ function addCitiesOptions(slct3, dt1, dt2, dt3, dt4, dt5, dt6, dt7, dt8, dt9, se
     }
 }
 
+//FUNCTION WITH A XMLREQUEST WHICH REDIRECTS THE USER TO THE INDEX PAGE
 function use_XHR(fo, response) {
     let xhr = new XMLHttpRequest();
 

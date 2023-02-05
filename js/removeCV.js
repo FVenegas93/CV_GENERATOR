@@ -7,6 +7,8 @@ const removeURL = url+param;
 
 const redirect = "http://localhost/CV_GENERATOR/php/Views/CVsList.php";
 
+/*AJAX REQUEST THAT'S INSIDE THE FUNCTION WHICH REMOVE A CV HAVING ITS ID AS A PARAMETER
+ONCE THE REQUEST IS SUCCESSFUL, A REDIRECT TO THE CV LIST IS DONE*/
 function removeCV(id) {
     var dataString = "id" + id;
     if(confirm("¿BORRAR CV?")) {

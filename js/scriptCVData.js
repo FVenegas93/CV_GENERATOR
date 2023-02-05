@@ -1,4 +1,5 @@
-//PARTE ASOCIADA AL FORMULARIO DE IDIOMAS
+//THIS SCRIPT PROBABLY IS NOT REFERENCED IN ANY ARCHIVE BUT I GOT NO TIME
+//TO EXPLORE IF IS TRUE OR NOT SO HERE IT WILL STAY NOT TO BROKE ANYTHING LOL
 
 var btn_lang = document.getElementById('btn-lang');
 var select_lang = document.getElementById('select-lang');
@@ -34,9 +35,10 @@ window.addEventListener("load", function(e) {
 });
 
 
-//PARTE ASOCIADA AL FORMULARIO DE TÍTULOS
+//FORM AS A VARIABLE 
 var title_form = document.getElementById('title-form');
 
+//SUBMIT EVENT ASSOCIATED TO THE FORM WHICH SEND THE DATA TO THE CONTROLLER
 window.addEventListener("load", function (e) {
     title_form.action = currentURL;
     ajax_resp = document.getElementsByClassName('ajax-resp');

@@ -1,11 +1,15 @@
+//VARIABLES
 var btn = document.getElementById('btn');
 var form_cvname = document.getElementById('rename-form');
 var div_wrong = document.getElementById('wrong-name');
 var input = document.getElementById('name-cv');
 
 var name_cv_bool = false;
+
+//REGEXP FOR CV NAME
 const name_cv_regexp = /^\w{6,14}$/;
 
+//URLS AND PARAM FOR AN URL WITH PARAMETERS
 const urlCreate = "http://localhost/CV_GENERATOR/php/Controllers/RenameCVForm.php";
 const url = "http://localhost/CV_GENERATOR/php/Controllers/RenameCVForm.php?cod_cv=";
 const queryString = window.location.search;
@@ -13,6 +17,7 @@ const urlParams = new URLSearchParams(queryString);
 const param = urlParams.get('cod_cv');
 const urlUpdate = url+param;
 
+//THIS ARROW FUNCTION CHECKS IF THE WRITTEN VALUE IS CORRECT*/
 const validateCVName = (reg, inp, val, bool) => {
     if(reg.test(val)) {
         inp.classList.remove('invalid-input');
@@ -35,7 +40,9 @@ const validateCVName = (reg, inp, val, bool) => {
     
 }
 
-
+/*
+THIS ARROW FUNCTION WRITES A COMMENT IF THE FORM IS NOT PROPERLY FILLED
+*/
 const validForm = (e) => {
     if(validateCVName(name_cv_regexp, input, input.value, name_cv_bool)) {
         name_cv_bool = true;
@@ -53,8 +60,10 @@ const validForm = (e) => {
     }
 }
 
+// BLUR EVENT ASSOCIATED TO THE VARIABLE INPUT
 input.addEventListener('blur', validForm);
 
+//DEPENDING OF THE CURRENT URL THE LOCATION WILL BE FOR CREATING A CV OR RENAMING IT
 window.addEventListener("load", function(e) {
     var currentURL = window.location.href;
     if(currentURL == urlCreate) {
@@ -64,7 +73,8 @@ window.addEventListener("load", function(e) {
     }
    
     ajax_resp = document.getElementsByClassName('ajax-resp');
-    
+
+    //SUBMIT EVENT ASSOCIATED TO THE FORM
     form_cvname.addEventListener('submit',(e) => {
         e.preventDefault();
         
@@ -76,7 +86,7 @@ window.addEventListener("load", function(e) {
     });
 });
 
-
+//AJAX REQUEEST INSIDE A FUNCTION WHICH REDIRECTS THE USER TO THE CV LIST
 function use_XHRR(fo, response) {
     let xhrr = new XMLHttpRequest();
 

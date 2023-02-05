@@ -114,6 +114,7 @@ const validateForm = (e) => {
     }
 }
 
+/*ADDS A BLUR EVENT FOREACH EXISTING INPUT*/
 inputs.forEach((input) => {
     input.addEventListener('blur', validateForm);
 });
@@ -136,6 +137,7 @@ $(document).ready(function() {
     });
 });
 
+/*AJAX REQUEST WHICH CHANGES THE CONTENT OF A SELECT INPUT ACCORDING TO THE CHOSEN OPTION*/
 select.addEventListener('change', function() {
     
     $.ajax({
@@ -155,6 +157,7 @@ select.addEventListener('change', function() {
     });
 });
 
+/*AJAX REQUEST WHICH CHANGES THE CONTENT OF A SELECT INPUT ACCORDING TO THE CHOSEN OPTION*/
 select2.addEventListener('change', function() {
 
     $.ajax({
@@ -180,12 +183,14 @@ select2.addEventListener('change', function() {
     });
 });
 
+/*FUNCTION WHICH REMOVES ALL THE ELEMENTS IN A SELECT ELEMENT*/
 function removeOptions(selectElement) {
     for(var i = selectElement.options.length; i >= 0; i--) {
         selectElement.remove(i);
     }
 }
 
+/*FUNCTION WHICH ADDS ELEMENTS IN A SELECT ELEMENT HAVING THE SELECT INPUT, 3 KIND OF DATA AND THE OPTIONS AS PARAMETERS*/
 function addRegionOptions(slct2, dt1, dt2, dt3, selected_opt) {
     
     switch(selected_opt) {
@@ -219,6 +224,7 @@ function addRegionOptions(slct2, dt1, dt2, dt3, selected_opt) {
     }
 }
 
+/*FUNCTION THAT ADDS CITIES IN A SELECT INPUT, 9 KIND OF DATA ANd THE SELECTED OPTION*/
 function addCitiesOptions(slct3, dt1, dt2, dt3, dt4, dt5, dt6, dt7, dt8, dt9, selected_opt) {
 
     switch(selected_opt) {
